@@ -77,15 +77,15 @@ export default {
             <ul class="list-unstyled">
               <li v-if="country.languages">
                 <span class="d-block fw-bold">Languages:</span> 
-                <span v-for="language in Object.keys(country.languages).map(k => country.languages[k])" :key="language" class="d-inline me-1 badge badge-dark">{{language}}</span>
+                <span v-for="language in Object.keys(country.languages).map(k => country.languages[k])" :key="language" class="d-inline-block me-1 badge badge-dark">{{language}}</span>
               </li>
               <li v-if="country.currencies">
                 <span class="d-block fw-bold">Currencies:</span>
-                <span v-for="currency in Object.keys(country.currencies)" :key="currency" class="d-inline me-1 badge badge-dark">{{currency}}</span>
+                <span v-for="currency in Object.keys(country.currencies)" :key="currency" class="d-inline-block me-1 badge badge-dark">{{currency}}</span>
               </li>
               <li v-if="country.timezones">
                 <span class="fw-bold d-block">Timezones:</span> 
-                <span v-for="timezone in Object.keys(country.timezones).map(k => country.timezones[k])" :key="timezone" class="d-inline me-1 badge badge-dark">{{timezone}}</span>
+                <span v-for="timezone in Object.keys(country.timezones).map(k => country.timezones[k])" :key="timezone" class="d-inline-block me-1 badge badge-dark">{{timezone}}</span>
               </li>
             </ul>
           </div>
