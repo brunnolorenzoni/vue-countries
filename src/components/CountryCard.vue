@@ -12,7 +12,7 @@
 
 <template>
   <div class="card h-100">
-    <img class="card-img-top card-image" :src="country.flags.png" alt="country.name.common" />
+    <img class="card-img-top card-image" :src="country.flags.png" :alt="country.name.common" :title="country.name.common" />
     <div class="card-body d-flex flex-column">
       <h4 class="card-title">{{country.name.common}}</h4>
       <ul class="list-unstyled mb-3 mt-3">
@@ -24,7 +24,7 @@
         <li v-if="country.area"><span class="fw-bold">Area:</span> {{numberWithPoints(country.area)}} km²</li>
       </ul>
       <div class="mt-auto text-end">
-        <router-link :to="{ name: 'country', params: { country: country.cca3 }}" class="btn btn-dark">Check more details</router-link>
+        <router-link :to="{ name: 'country', params: { cca3: country.cca3 }}" class="btn btn-dark">Check more details</router-link>
       </div>
     </div>
   </div>
