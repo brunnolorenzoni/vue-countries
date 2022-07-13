@@ -20,6 +20,6 @@
     height: 100vh;
   }
   #main {
-    height: calc(100vh - 60px);
+    height: calc(100% - 60px); /*height - header height*/
   }
 </style>

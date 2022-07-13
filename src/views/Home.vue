@@ -70,7 +70,7 @@
 
     methods: {
       scrollToTop() {
-        window.scrollTo(0,0);
+        document.getElementById('countries').scrollTo(0,0);
       },
 
       filterCountries (id, value) {

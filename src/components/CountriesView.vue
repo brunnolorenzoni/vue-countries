@@ -1,8 +1,8 @@
 <script>
   import CountryCard from '@/components/CountryCard'
   import LazyList from 'lazy-load-list/vue'
-  
-  export default {
+
+export default {
     props: [
       'countries'
     ],
@@ -30,12 +30,12 @@
     <section id="countries" class="p-2" :style="{ 'height': this.calculateHeight() }">
       <LazyList
         :data="countries"
-        :itemsPerRender="5"
+        :itemsPerRender="12"
         container-classes="row"
         defaultLoadingColor="#212529"
       >
         <template v-slot="{item}">
-          <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+          <div class="col-12 col-md-6 col-lg-3 mb-4">
             <CountryCard :country="item" />
           </div>
         </template>
