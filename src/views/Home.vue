@@ -1,7 +1,7 @@
 <script>
   import { useFetch } from '@vueuse/core'
   import CountryCard from '@/components/CountryCard'
-  import FilterCountries from '@/components/FilterCountries'
+  import FiltersHeader from '@/components/FiltersHeader'
 
   const HOURS_TO_EXPIRES = 24
 
@@ -33,7 +33,7 @@
     name: 'HomePage',
     components: {
       CountryCard,
-      FilterCountries
+      FiltersHeader
     }
   }
 </script>
@@ -45,7 +45,7 @@
 
     <div class="row mb-4">
       <div class="col-12">
-        <FilterCountries/>
+        <FiltersHeader/>
       </div>
     </div>
 
