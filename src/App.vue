@@ -9,7 +9,17 @@
 
 <template>
   <Header />
-  <main id="main" class="p-3">
+  <main id="main" class="p-1 bg-light">
     <router-view />
   </main>
 </template>
+
+<style>
+  #app {
+    overflow: hidden;
+    height: 100vh;
+  }
+  #main {
+    height: calc(100vh - 60px);
+  }
+</style>

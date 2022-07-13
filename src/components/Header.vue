@@ -5,8 +5,8 @@
 </script>
 
 <template>
-  <header id="header">
-    <nav class="navbar navbar-dark bg-dark">
+  <header id="header" class="bg-dark" >
+    <nav class="navbar navbar-dark">
       <div class="container-fluid">
         <router-link to="/" class="navbar-brand" href="/">
           <img
@@ -22,3 +22,9 @@
     </nav>
   </header>
 </template>
+
+<style scoped>
+  #header {
+    height: 60px;
+  }
+</style>

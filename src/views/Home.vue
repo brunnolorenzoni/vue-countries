@@ -69,6 +69,10 @@
     },
 
     methods: {
+      scrollToTop() {
+        window.scrollTo(0,0);
+      },
+
       filterCountries (id, value) {
         this.filter.filteredCountries = []
         this.filter.search[id] = value
@@ -99,23 +103,22 @@
           return true
           
         })
-        console.log(this.filter.filteredCountries)
+        this.scrollToTop()
       }
-    }
-
+    },
   }
 </script>
 
 <template>
+  <filters-view :filter="filter" :regions="regions" :filterCountries="filterCountries" />
+
   <div v-if="error">Oops! Error encountered: {{ error }}</div>
   <div v-else-if="isLoading">Loading... </div>
-  
-  <section id="countries-section" v-else>
-    <filters-view :filter="filter" :regions="regions" :filterCountries="filterCountries" />
+  <slot v-else>
     <countries-view v-if="countries.length && !filter.search.hasFilters" :countries="countries" />
     <countries-view v-else-if="filter.search.hasFilters && filter.filteredCountries.length" :countries="filter.filteredCountries" />
     <p v-else-if="filter.search.hasFilters && !filter.filteredCountries.length">No matching result!</p>
     <p v-else>No data!</p>
-  </section>
+  </slot>
 
 </template>
