@@ -89,7 +89,7 @@ export default {
               </li>
             </ul>
           </div>
-          <div class="col-12 mt-2">
+          <div class="col-12 mt-2" v-if="country.borders">
             <h5>Borders</h5>
             <div class="d-flex flex-wrap justify-content-start">
               <router-link v-for="(border, index) in country.borders" :key="index" :to="{ name: 'country', params: { cca3: border }}" class="btn btn-dark m-1">{{border}}</router-link>
