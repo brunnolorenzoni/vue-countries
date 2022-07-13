@@ -34,12 +34,9 @@
       }
     },
 
-    async mounted () {
-      let countries = localStorage.getItem('countries')
-      if (countries) {
-        countries = JSON.parse(countries)
-        if (new Date().getTime() < countries.expiry) return this.countries = countries.value
-      }
+    async created () {
+      let countries = this.$localStorage.get('countries')
+      if (countries) return this.countries = countries
 
       this.isLoading = true
       const { error, data } = await useFetch('https://restcountries.com/v3.1/all', {
@@ -52,9 +49,7 @@
 
       if (error.value) return this.error = error.value
 
-      const item = { value: data.value, expiry: new Date().getTime() + hoursToMilliseconds(HOURS_TO_EXPIRES) }
-      localStorage.setItem('countries', JSON.stringify(item))
-
+      this.$localStorage.set('countries', data.value, hoursToMilliseconds(HOURS_TO_EXPIRES))
       return this.countries = data
     },
 
@@ -69,6 +64,10 @@
     },
 
     methods: {
+      scrollToTop() {
+        document.getElementById('countries').scrollTo(0,0);
+      },
+
       filterCountries (id, value) {
         this.filter.filteredCountries = []
         this.filter.search[id] = value
@@ -86,8 +85,8 @@
           }
 
           if(countryName) {
-            const { name: { common,  official }, cca2, cca3, cioc, fifa, altSpellings, translations } = c
             //find the country in all possible languages, initials, codes, names provided by API
+            const { name: { common,  official }, cca2, cca3, cioc, fifa, altSpellings, translations } = c
             const arrTranslations = Object.keys(translations).map(t => [translations[t].common, official]).flat()
             const attrs = [ common, official, cca2, cca3, cioc, fifa].concat(altSpellings, arrTranslations)
             let canBe = []
@@ -99,23 +98,20 @@
           return true
           
         })
-        console.log(this.filter.filteredCountries)
+        this.scrollToTop()
       }
-    }
-
+    },
   }
 </script>
 
 <template>
-  <div v-if="error">Oops! Error encountered: {{ error }}</div>
-  <div v-else-if="isLoading">Loading... </div>
-  
-  <section id="countries-section" class="row" v-else>
     <filters-view :filter="filter" :regions="regions" :filterCountries="filterCountries" />
-    <countries-view v-if="countries.length && !filter.search.hasFilters" :countries="countries" />
-    <countries-view v-else-if="filter.search.hasFilters && filter.filteredCountries.length" :countries="filter.filteredCountries" />
-    <p v-else-if="filter.search.hasFilters && !filter.filteredCountries.length">No matching result!</p>
-    <p v-else>No data!</p>
-  </section>
-
+    <div v-if="error">Oops! Error encountered: {{ error }}</div>
+    <div v-else-if="isLoading">Loading... </div>
+    <slot v-else>
+      <countries-view v-if="countries.length && !filter.search.hasFilters" :countries="countries" />
+      <countries-view v-else-if="filter.search.hasFilters && filter.filteredCountries.length" :countries="filter.filteredCountries" />
+      <p v-else-if="filter.search.hasFilters && !filter.filteredCountries.length">No matching result!</p>
+      <p v-else>No data!</p>
+    </slot>
 </template>

@@ -12,9 +12,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/country/:country',
+    path: '/country/:cca3',
     name: 'country',
-    component: Country
+    component: Country,
   },
   { 
     path: '/:pathMatch(.*)*',
