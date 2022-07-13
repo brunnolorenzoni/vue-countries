@@ -9,10 +9,7 @@
 
 <template>
   <Header />
-  <main id="router-view" class="p-3">
-    <Suspense>
-      <template #fallback> Loading... </template>
-      <router-view />
-    </Suspense>
+  <main id="main" class="p-3">
+    <router-view />
   </main>
 </template>

@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <header>
+  <header id="header">
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
         <router-link to="/" class="navbar-brand" href="/">

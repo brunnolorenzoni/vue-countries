@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-  <div class="row mb-4">
+  <div id="filters" class="row mb-4">
     <div class="col-12">
       <div class="row">
         <div class="col-xs-12 col-md-3 mb-3">

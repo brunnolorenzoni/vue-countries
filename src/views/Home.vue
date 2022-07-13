@@ -110,7 +110,7 @@
   <div v-if="error">Oops! Error encountered: {{ error }}</div>
   <div v-else-if="isLoading">Loading... </div>
   
-  <section id="countries-section" class="row" v-else>
+  <section id="countries-section" v-else>
     <filters-view :filter="filter" :regions="regions" :filterCountries="filterCountries" />
     <countries-view v-if="countries.length && !filter.search.hasFilters" :countries="countries" />
     <countries-view v-else-if="filter.search.hasFilters && filter.filteredCountries.length" :countries="filter.filteredCountries" />
