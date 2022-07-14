@@ -67,6 +67,9 @@
           return acc
         }, []).sort()
       },
+      filteredCountries () {
+        if (this.filteredCountries.length) this.scrollToTop()
+      }
     },
 
     methods: {
@@ -102,16 +105,14 @@
             if (canBe.length === 0) return false
           }
           return true
-          
         })
-        this.scrollToTop()
       }
     },
   }
 </script>
 
 <template>
-    <filters-view :filter="filter" :regions="regions" :filterCountries="filterCountries" />
+    <filters-view :regions="regions" :filterCountries="filterCountries" />
     <div v-if="error">Oops! Error encountered: {{ error }}</div>
     <div v-else-if="isLoading">Loading... </div>
     <slot v-else>

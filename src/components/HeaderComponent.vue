@@ -12,9 +12,9 @@
           <img
             src="../assets/logo.png"
             class="me-2 align-middle"
+            width="20"
             height="20"
             alt="Vue Countries Logo"
-            loading="lazy"
           />
           <h1 class="h4 m-0 d-inline align-middle">Vue Countries</h1>
         </a>

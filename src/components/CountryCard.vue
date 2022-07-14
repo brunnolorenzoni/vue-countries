@@ -1,9 +1,12 @@
 <script>
+  import { numberWithPoints } from '@/helpers/formatNumbers'
   export default {
-    props: ['country'], 
-    methods: {
-      numberWithPoints: (number) => {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    props: {
+      country: {}
+    },
+    setup () {
+      return {
+        numberWithPoints
       }
     }
   }
