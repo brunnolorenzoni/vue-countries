@@ -18,9 +18,12 @@ export default {
     },
     methods: {
       calculateHeight() {
-        const mainContainer = document.getElementById('main').offsetHeight
-        const filterContainer = document.getElementById('filters').offsetHeight
-        return `${(mainContainer - filterContainer)}px`
+        const filterContainer = document.getElementById('filters')
+        const filterContainerHeight = filterContainer?.offsetHeight || 0
+        const parentHeight = filterContainer?.parentElement?.offsetHeight || 0
+
+        if(!filterContainerHeight && !parentHeight) return '50vh'
+        return `${(parentHeight - filterContainerHeight)}px`
       }
     }
   }

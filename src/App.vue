@@ -1,14 +1,14 @@
 <script>
-  import Header from '@/components/Header'
+  import HeaderComponent from '@/components/HeaderComponent'
 
   export default {
     name: 'App',
-    components: { Header }
+    components: { HeaderComponent }
   }
 </script>
 
 <template>
-  <Header />
+  <HeaderComponent />
   <main id="main" class="p-1 bg-light">
     <router-view />
   </main>

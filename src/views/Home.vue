@@ -35,22 +35,28 @@
     },
 
     async created () {
-      let countries = this.$localStorage.get('countries')
-      if (countries) return this.countries = countries
+      try {
+        let countries = this.$localStorage.get('countries')
+        if (countries) return this.countries = countries
 
-      this.isLoading = true
-      const { error, data } = await useFetch('https://restcountries.com/v3.1/all', {
-        afterFetch(ctx) {
-          ctx.data.sort((a,b) => (a.name.common > b.name.common) ? 1 : ((b.name.common > a.name.common) ? -1 : 0))
-          return ctx
-        }
-      }).json()
-      this.isLoading = false
+        this.isLoading = true
+        const { error, data } = await useFetch('https://restcountries.com/v3.1/all', {
+          afterFetch(ctx) {
+            ctx.data.sort((a,b) => (a.name.common > b.name.common) ? 1 : ((b.name.common > a.name.common) ? -1 : 0))
+            return ctx
+          }
+        }).json()
+        this.isLoading = false
 
-      if (error.value) return this.error = error.value
+        if (error.value) return this.error = error.value
 
-      this.$localStorage.set('countries', data.value, hoursToMilliseconds(HOURS_TO_EXPIRES))
-      return this.countries = data
+        this.$localStorage.set('countries', data.value, hoursToMilliseconds(HOURS_TO_EXPIRES))
+        return this.countries = data
+      } catch (err) {
+        this.isLoading = false
+        return this.error = err.message
+      }
+      
     },
 
     watch: {
