@@ -24,19 +24,13 @@ This is more about the architecture of your code and less about the function its
 
 ### Folder structure
 
-├── src
-│   ├── assets
-│   │   ├── to store all assets files
-│   ├── components
-│   |   ├── to store all components
-│   ├── helpers
-│   |   ├── to store reusable functions
-│   ├── plugins
-|   |   ├── to store vue plugins
-│   ├── router
-|   |   ├── to set our app routes
-│   ├── views
-|   |   ├── to store pages
+    src
+    ├── assets              # to store all assets files
+    ├── components          # to store all components
+    ├── helpers             # to store reusable functions
+    ├── plugins             # to store vue plugins
+    ├── router              # to set our app routes
+    └── views               # to store pages
 
 ### Built with
 
