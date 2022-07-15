@@ -1,26 +1,45 @@
 <script>
+  import Map from '@/components/GoogleMaps/Map.vue'
   import { numberWithPoints } from '@/helpers/formatNumbers'
+
   export default {
+    components: { Map },
     props: {
       country: {}
+    },
+
+    data() {
+      return {
+        google: {
+          map: null, 
+          api: null
+        },
+      }
     },
     setup () {
       return {
         numberWithPoints
       }
-    }
+    },
+    methods: {
+      onMapLoad (api, map) {
+        this.google.api = api
+        this.google.map = map
+      },
+    },
+    
   }
 </script>
 
 <template>
-  <section id="country" class="container-fluid h-100" v-if="Object.keys(country).length">
-    <div class="row justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-6">
+  <section id="country" class="container-fluid" v-if="Object.keys(country).length">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-12 col-md-6 mb-2">
         <div class="d-flex justify-content-center align-items-center">
           <img class="flag" :src="country.flags.svg" :alt="country.name.common" :title="country.name.common" />
         </div>
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6 mb-2">
         <div>
           <h2>{{country.name.common}}</h2>
         </div>
@@ -44,7 +63,7 @@
               </li>
             </ul>
           </div>
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md-6 mb-2">
             <ul class="list-unstyled">
               <li v-if="country.languages">
                 <span class="d-block fw-bold">Languages:</span> 
@@ -67,6 +86,11 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 mt-2" v-if="country.latlng">
+        <Map :center="{ lat: country.latlng[0],  lng: country.latlng[1] }" :zoom="5" :callback="this.onMapLoad" />
       </div>
     </div>
   </section>

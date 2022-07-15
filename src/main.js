@@ -4,4 +4,4 @@ import App from './App.vue'
 import "bootstrap/dist/css/bootstrap.css"
 import localStorage from './plugins/localStorage'
 
-createApp(App).use(localStorage).use(router).mount('#app')
+createApp(App) .use(localStorage).use(router).mount('#app')
