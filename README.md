@@ -59,3 +59,8 @@ npm run build
 ```
 npm run lint
 ```
+
+### Run tests
+```
+npm run test
+```
