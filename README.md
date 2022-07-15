@@ -23,6 +23,7 @@ This is more about the architecture of your code and less about the function its
 ## About the project
 
 ### Folder structure
+
 ├── src
 │   ├── assets
 │   │   ├── to store all assets files
