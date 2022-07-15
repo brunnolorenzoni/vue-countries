@@ -3,12 +3,9 @@
   import CountriesView from '@/components/CountriesView'
   import FiltersView from '@/components/FiltersView'
   import { reactive } from 'vue'
+  import { hoursToMilliseconds } from '@/helpers/time'
 
   const HOURS_TO_EXPIRES = 24
-
-  function hoursToMilliseconds (hours) {
-    return hours * 60 * 60 * 1000
-  }
 
   export default {
     name: 'HomePage',
@@ -112,13 +109,13 @@
 </script>
 
 <template>
-    <filters-view :regions="regions" :filterCountries="filterCountries" />
-    <div v-if="error">Oops! Error encountered: {{ error }}</div>
-    <div v-else-if="isLoading">Loading... </div>
-    <slot v-else>
-      <countries-view v-if="countries.length && !filter.search.hasFilters" :countries="countries" />
-      <countries-view v-else-if="filter.search.hasFilters && filter.filteredCountries.length" :countries="filter.filteredCountries" />
-      <p v-else-if="filter.search.hasFilters && !filter.filteredCountries.length">No matching result!</p>
-      <p v-else>No data!</p>
-    </slot>
+  <filters-view :regions="regions" :filterCountries="filterCountries" />
+  <div v-if="error">Oops! Error encountered: {{ error }}</div>
+  <div v-else-if="isLoading">Loading... </div>
+  <slot v-else>
+    <countries-view v-if="countries.length && !filter.search.hasFilters" :countries="countries" />
+    <countries-view v-else-if="filter.search.hasFilters && filter.filteredCountries.length" :countries="filter.filteredCountries" />
+    <p v-else-if="filter.search.hasFilters && !filter.filteredCountries.length">No matching result!</p>
+    <p v-else>No data!</p>
+  </slot>
 </template>
